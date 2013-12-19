@@ -1,0 +1,168 @@
+@import url("normalize.css");
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+/*
+Theme Name: receptes
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0
+License: GNU General Public License
+License URI: license.txt
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+ receptes is based on Underscores http://underscores.me/, (C) 2012-2013 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+*/
+.hidden {
+  display: none; }
+
+.text-center {
+  text-align: center; }
+
+/* Links */
+a {
+  color: #a34d1f;
+  text-decoration: none; }
+  a:hover {
+    color: #c9774c; }
+
+.post a {
+  color: #a34d1f;
+  text-decoration: none;
+  border-bottom: 1px solid #c9774c; }
+  .post a:active {
+    color: #c9774c; }
+  .post a:hover {
+    border-bottom: 2px solid #c9774c; }
+
+.post h1 a {
+  border: none; }
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: "ff-tisa-web-pro"; }
+
+ul {
+  margin: 0 0 0 20px;
+  padding: 0; }
+
+/* ========== Main Styles ========== */
+body, button, input, select, textarea {
+  color: #444444;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: 18px;
+  line-height: 1.5; }
+
+.site-branding {
+  margin-bottom: 20px; }
+  .site-branding .site-title {
+    margin-top: 100px; }
+    .site-branding .site-title a {
+      font-size: 40px;
+      font-weight: bold;
+      font-style: italic; }
+  .site-branding .site-subtitle {
+    color: #999999;
+    font-size: 23px;
+    font-style: italic;
+    font-weight: 100; }
+
+.tomatigues {
+  background-image: url("images/tomatigues.png");
+  background-size: 100%;
+  background-position: center -29px;
+  background-repeat: no-repeat;
+  min-height: 350px; }
+
+.molinet {
+  background-image: url("images/molinet.png");
+  background-size: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 350px; }
+
+.entry-title a {
+  color: #444444; }
+
+.widget-area .widget-title {
+  font-size: 20px; }
+
+.widget_categories h1 {
+  display: none; }
+.widget_categories ul {
+  list-style: none;
+  margin: 0; }
+  .widget_categories ul li {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s; }
+    .widget_categories ul li:nth-child(odd) {
+      background-color: #c8bb8f; }
+    .widget_categories ul li:nth-child(even) {
+      background-color: #c0b17e; }
+    .widget_categories ul li:hover {
+      background-color: #d1c6a0; }
+    .widget_categories ul li a {
+      padding: 7px 7px 7px 20px;
+      width: 100%;
+      display: block;
+      color: white; }
+
+.post {
+  border: 1px solid #d7d5c6;
+  padding: 25px; }
+  .post .entry-header {
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid #d7d5c6; }
+    .post .entry-header .entry-title {
+      font-size: 35px;
+      font-weight: bold; }
+      .post .entry-header .entry-title a {
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s; }
+        .post .entry-header .entry-title a:hover {
+          color: #5e5e5e; }
+    .post .entry-header .entry-meta {
+      font-size: 20px;
+      color: #999999; }
+  .post .entry-content h3 {
+    font-weight: bold;
+    font-size: 20px; }
+
+@media screen and (max-width: 768px) {
+  .site-branding .site-title {
+    margin-top: 20px; }
+
+  .site-branding .site-title a {
+    font-size: 30px; }
+
+  .site-branding .site-subtitle {
+    font-size: 20px; }
+
+  .molinet {
+    height: 400px;
+    background-size: 46%; }
+
+  .widget_categories {
+    text-align: center; } }
+@media screen and (max-width: 480px) {
+  .molinet {
+    min-height: 80px;
+    background-size: 44%;
+    height: 200px; }
+
+  .site-branding .site-title {
+    margin-top: 20px;
+    font-size: 30px; }
+
+  .site-branding .site-subtitle {
+    font-size: 20px; } }

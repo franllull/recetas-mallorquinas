@@ -20,12 +20,71 @@ along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normali
 and Blueprint http://www.blueprintcss.org/
 */
 
+//TODO
+//transitions molí, transitions tomàtigues
+
+
 @import 'bourbon/bourbon';
 @import url('normalize.css');
+@import url('fonts.css');
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 
+
+//mixins
+
+@mixin underline($color:$gr) {
+  text-decoration: none;
+  border-bottom: 1px dashed $color;
+  display: inline-block;
+}
+
+@mixin subtitle($size) {
+	color: $gr;
+	font-weight: 100;
+	line-height: 110%;
+	font-size: $size;
+}
+
+@mixin padded-sides ($val1: 20px, $val2:20px){
+	padding: $val1 $val2;
+}
+
+@mixin separate {
+	margin-bottom: 20px;
+}
+
+@mixin space($percentage:0%) {
+	display: inline-block;
+	width: $percentage;
+	margin-left:-3px;
+	vertical-align: top;
+}
+
+@mixin hovered-darken($color){
+	@include transition (color 0.5s);
+	&:hover {
+		color: darken($color, 13%);
+	}
+}
+
+@mixin hovered-lighten($color){
+	@include transition (color 0.5s);
+	&:hover {
+		color: lighten($color, 13%);
+	}
+}
+
+@mixin unselectable {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+}
+
+
 //colors
-$bl: #444444;
+$bl: #666;
 $wh: #fff;
 $gr: #999999;
 $lgr: #D7D5C6;
@@ -36,72 +95,106 @@ $cream : #C0B17E;
 //coolclasses
 .hidden {display:none;}
 .text-center {text-align: center;}
+.button {
+	@include transition (all 0.3s ease);
+	display: inline-block;
+	background-color: $ramallet;
+	color: $wh;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+	&:hover {
+		background-color: darken($ramallet, 13%);
+	}
+}
 
 //wp-overrides
-
 
 /* Links */
 a {
 	color: $ramallet;
 	text-decoration: none;
-	&:hover {color: $ramalight;}
-}
-.post {
-	a {
-		color: $ramallet;
-		text-decoration: none;
-		border-bottom: 1px solid $ramalight;
-		&:active {color:$ramalight;}
-		&:hover {border-bottom: 2px solid $ramalight;}
-	}
 }
 
-.post {
-	h1 a {border: none;}
+p {
+	margin: 0;
 }
 
 /* Headings */
 
-h1, h2, h3, h4 { font-family: "ff-tisa-web-pro"}
+h1, h2, h3, h4 { font-family: "ff-meta-serif-web-pro"}
 ul {margin: 0 0 0 20px; padding: 0;}
 
 /* ========== Main Styles ========== */
 
+body {
+	background-color: #F3F3F3;
+}
+
 body, button, input, select, textarea {
 	color: $bl; 
-	font-family: "ff-tisa-sans-web-pro", sans-serif; 
-	font-size: 18px; 
+	font-family: "ff-meta-serif-web-pro", sans-serif; 
+	font-size: 17px; 
 	line-height: 1.5;
 }
+
+// type guides
+
+h2 {
+	font-style: italic;
+	color: $ramalight;
+	font-size: 25px;
+}
+
 
 //header
 .site-branding {
 	margin-bottom: 20px;
 	.site-title {
-		margin-top: 100px;
+		margin-top: 120px;
+		line-height: 50px;
 		a {
-			font-size: 40px;
+			font-family: "ff-prater-script-web";
+			font-size: 48px;
 			font-weight: bold;
-			font-style: italic;
+			@include hovered-darken($ramallet);
 		}
 	}
 	.site-subtitle {
-		color: $gr;
-		font-size: 23px;
-		font-style: italic;
-		font-weight: 100;
+		@include subtitle(20px);
+		margin-top: 10px;
 	}
-	.site-description {
 
+	.boto-random {
+		.icon-mallorca {
+			font-size: 30px;
+			color: $gr;
+			@include transition (all 0.3s ease);
+			//@include animation(pulsate 1.6s ease);
+			@include animation-iteration-count(infinite);
+			&:hover {
+				color: $ramallet;
+			}
+		}
 	}
 }
 
+@include keyframes(pulsate) {
+    0% {opacity: .7;}
+    50% {opacity: 1;}
+    100% {opacity: .7;}
+}
+
 .tomatigues {
-	background-image: url("images/tomatigues.png");
+	background-image: url("images/tomatigues-long.png");
 	background-size: 100%;
-	background-position: center -29px;
+	background-position: center -34px;
 	background-repeat: no-repeat;
 	min-height: 350px;
+	@include transition (all 0.3s ease-out);
+	&:hover {
+		background-position: center 0px;
+	}
 }
 
 .molinet {
@@ -110,67 +203,228 @@ body, button, input, select, textarea {
 	background-position: center center;
 	background-repeat: no-repeat;
 	min-height: 350px;
+	position: relative;
+	&:hover .molinet-inner {
+		visibility: visible;
+	}
+	.molinet-inner {
+		visibility: hidden;
+		position: absolute;
+		background-image: url("images/molinetulls.png");
+		top: 0; right: 0; bottom: 0; left: 0;
+		background-size: 90%;
+		background-position: center center;
+		background-repeat: no-repeat;
+		min-height: 350px;
+	}
 }
-
-.entry-title a {
-	color: $bl;
-}
-
 
 // aside - widgets
-
 .widget-area {
 	.widget-title {
 		font-size: 20px;
 	}
 }
 .widget_categories {
-	h1 {display: none;}
+	h2 {display: none;}
 	ul {
 		list-style: none;
 		margin: 0;
 
 		li {
-			@include transition (all 0.4s);
+			@include transition (color 0.4s);
 			&:nth-child(odd) {background-color: lighten($cream, 5%); }
 			&:nth-child(even) {background-color: $cream;}
 			&:hover {background-color: lighten($cream, 10%);}
 			a {
-				padding: 7px 7px 7px 20px;
+				@include padded-sides(7px, 25px);
 				width: 100%;
 				display: block;
 				color: $wh;
+				&:after {
+					display: inline-block;
+					font-family: 'receptes';
+					content: "\e601";
+					color: $wh;
+					position: absolute;
+					right: 15px;
+				}
 			}
 		}
-	}
+	}	
 }
 
 
-// post stuff
-
-.post {
+.widget_text {
+	background-color: $wh;
+	@include padded-sides(20px, 25px);
 	border: 1px solid $lgr;
-	padding: 25px;
+	.widget-title {
+		margin-bottom: 10px;
+	}
+}
+.textwidget {
+	.dineta-avatar {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 10px;
+
+	}
+}
+
+// post styles
+.post {
+	background-color: white;
+	border: 1px solid $lgr;
+	
 	.entry-header {
-		padding: 10px 0 20px 0;
-		border-bottom: 1px solid $lgr;
+		@include padded-sides(25px, 25px);
 		.entry-title {
-			font-size: 35px; font-weight: bold;
-			a {
-				@include transition(all 0.3s);
-				&:hover {color: lighten($bl, 10%);}
+			border-right: 1px solid $lgr;
+			h1 {
+				font-size: 30px; 
+				line-height: 110%;
+				font-weight: italic;
+				a {
+					color: $bl;
+					@include hovered-darken($bl);
+
+				}
+			}
+			.sub-author {
+				@include subtitle(inherit);
+				a {
+					color: $ramalight;
+					@include underline($ramalight);
+					@include hovered-darken($ramalight);
+				}
 			}
 		}
 		.entry-meta {
-			font-size: 20px; color: $gr;
+			text-align: right;
+			.time {
+				font-size: 30px; 
+				line-height: 110%;
+				vertical-align: top;
+				font-weight: bold;
+			}
+			.icon-rellotge {
+				vertical-align: top;
+				font-size: 30px;
+				display: inline-block;
+			}
+			.dificulty {
+				text-transform: capitalize;
+				line-height: 100%;
+			}
+
+			.ple {
+				color: $ramalight;
+			}
+
+			.buid {
+				color: $bl;
+			}
 		}
 	}
 	.entry-content {
+		@include padded-sides(20px, 25px);
+		margin: 0;
+		
+		h2 {
+			font-size: 20px;
+		}
+		
+		.entry-block {
+			@include separate;
+			.ingredients {
+				border-right: 1px solid $lgr;
+				list-style: none;
+				padding: 0 0 1.5em 1.5em;
+				li {display: block;}
+			}
+			.mesures {
+				@include unselectable;
+				text-align: center;
+				.icon-bol {
+					font-size: 4.5em;
+					vertical-align: middle;
+
+				}
+				.serving {
+					text-align: center;
+					width: 50px;
+					@include unselectable;
+				}
+			}
+		}
+
+		a {text-decoration: underline;}
+
 		h3 {
 			font-weight: bold;
 			font-size: 20px;
 		}
 	}
+
+	footer {
+		.footer-block {
+			border-top: 1px solid lighten($lgr, 10%);
+			@include padded-sides(20px, 25px);
+		}
+		.related-links {
+			ul {
+				list-style: none;
+			}
+		}
+		.comments-link {
+			a {
+				display: block;
+				text-align: center;
+				@include transition(color .5s ease);
+				&:hover {
+					color: $ramalight;
+				}
+			}
+			
+			.icon-comment {
+				font-size: 30px;
+				vertical-align: middle;
+			}
+		}
+		.edit-link {
+			text-align: center;
+			border-top: 1px dashed $ramalight;
+			a {
+				@include hovered-lighten($ramalight);
+			}
+		}
+	}
+	.related-by-cat {
+		li {
+			@include padded-sides(10px, 10px);
+		}
+	}
+}
+
+//when single post column
+.single {
+	.post, .navigation-post, .comments-area{
+		max-width: 750px;
+		margin: 0 auto;
+	}
+}
+
+.archive-title {
+	font-size: 35px;
+	color: $lgr;
+	text-align: center;
+	font-family: "ff-prater-script-web";
+	margin-bottom: 20px;
+}
+
+footer {
+	@include padded-sides(20px, 25px);
 }
 
 
@@ -188,12 +442,13 @@ body, button, input, select, textarea {
 @media screen and (max-width: 480px) {
 	.molinet {
 		min-height: 80px;
-		background-size: 44%;
+		background-size: 60%;
 		height: 200px;
 	}
 	.site-branding .site-title {margin-top: 20px; font-size: 30px;}
 	.site-branding .site-subtitle {font-size: 20px;}
 
 }
+
 
 

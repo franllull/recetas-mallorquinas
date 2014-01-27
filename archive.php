@@ -8,17 +8,18 @@
  */
 
 get_header(); ?>
+<?php get_sidebar(); ?>
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="content-area unit two-of-three">
 		<div id="content" class="site-content" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<h1 class="page-title archive-title">
 					<?php
 						if ( is_category() ) :
-							printf( __( 'Category Archives: %s', 'receptes' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+							printf( __( 'Lista de recetas %s', 'receptes' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 
 						elseif ( is_tag() ) :
 							printf( __( 'Tag Archives: %s', 'receptes' ), '<span>' . single_tag_title( '', false ) . '</span>' );
@@ -108,5 +109,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

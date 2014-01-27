@@ -12,7 +12,6 @@
  */
 
 get_header(); ?>
-
 <?php get_sidebar(); ?>
 
 	<div id="primary" class="content-area unit two-of-three">

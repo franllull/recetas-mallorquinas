@@ -4,62 +4,119 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+<?php 
+//variables to show custom fields
+$post_meta_data = get_post_custom($post->ID);
+$dificulty = get_post_meta($post->ID, 'custom_dificulty', true); 
+$time = get_post_meta($post->ID, 'custom_time', true); 
+$servings = get_post_meta($post->ID, 'custom_servings', true); 
+$image = get_post_meta($post->ID, 'custom_image', true); 
+$ingredientes = unserialize($post_meta_data['custom_ingredientes'][0]);
+?>
 
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<header class="entry-header grid">
+		<div class="entry-title unit-fluid three-of-four">
+			<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+			<h2 class="sub-author"> por <?php the_author_posts_link(); ?></h2>
+		</div>
 		<?php if ( 'post' == get_post_type() ) : ?>
-		<div class="entry-meta">
-			Por <?php the_author_posts_link(); ?>
-		</div><!-- .entry-meta -->
+			<div class="entry-meta unit-fluid one-of-four">
+				<span class="time"><?php echo $time ?>&#39;</span><span class="icon-rellotge"></span><br />
+				<span class="dificulty"><?php echo $dificulty ?></span>
+				
+				<?php 
+				//displaying tomatoes for dificulty
+				$char = substr($dificulty, 0, 1);
+				if ($char == "f" ) {echo "<span class='icon-domatiga ple'><span class='icon-domatiga buid'><span class='icon-domatiga buid'>";} 
+				elseif ($char == "m") {echo "<span class='icon-domatiga ple'><span class='icon-domatiga ple'><span class='icon-domatiga buid'>";} 
+				else {echo "<span class='icon-domatiga ple'><span class='icon-domatiga ple'><span class='icon-domatiga ple'>";}
+				?>
+
+			</div><!-- entry-meta ends -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+		<div class="entry-summary">
+			<?php the_excerpt(); ?>
+		</div><!-- .entry-summary -->
 	<?php else : ?>
+
+	<!-- 1. extended picture before padded content -->
+	<a href="<?php the_permalink(); ?>">
+		<?php  echo wp_get_attachment_image($image, 'full');  ?>
+	</a>
+
 	<div class="entry-content">
-		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'receptes' ) ); ?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'receptes' ),
-				'after'  => '</div>',
-			) );
-		?>
+	
+		<!-- 2. ingredients -->
+		<div class="ingredient-box entry-block">
+			<h2>Ingredientes</h2>
+			<div class="grid">
+				<?php
+					echo '<ul class="ingredients unit three-of-four">';  
+					foreach ($ingredientes as $string) {  
+					    echo '<li class="ingredient"><input type="checkbox" /> '.$string.'</li>';  
+					}  
+					echo '</ul>';  
+				?>
+				<div class="mesures unit one-of-four">
+					<input type="text" class="serving" name="servings" maxlength="2" value="<?= $servings ?>" />
+					<input type="hidden" id="previousServing" value="5"/>
+					<span class="icon-bol"></span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			jQuery(function() {
+			    jQuery(".serving").bind('keyup', function(event) {
+			        var previousValue = parseFloat(jQuery("#previousServing").val());
+			        var newValue = parseFloat(jQuery(event.target).val());
+			        if (previousValue && newValue) {
+			            jQuery(".ingredient").each(function(index, elem) {
+			                var ingredientNow = jQuery('i', elem);
+			                var oldIngredientAmount = ingredientNow.text();
+			                var newIngredientAmount = (oldIngredientAmount * newValue / previousValue).toFixed(1);
+			                ingredientNow.text(newIngredientAmount);
+			             });
+			            jQuery("#previousServing").val(newValue);
+			        }
+			    });
+				jQuery(".serving").on('input', function (event) { 
+				    this.value = this.value.replace(/[^0-9]/g, '');
+				});
+			});
+		</script>
+
+		<!-- 3. Preparation -->
+		<div class="preparation-box entry-block">
+			<h2>Preparación</h2>
+			<?php the_content( __( 'Ver toda la receta <span class="meta-nav">&rarr;</span>', 'receptes' ) ); ?>
+
+			<?php
+				wp_link_pages( array(
+					'before' => '<div class="page-links">' . __( 'Pages:', 'receptes' ),
+					'after'  => '</div>',
+				) );
+			?>
+		</div>
+
 	</div><!-- .entry-content -->
+	
 	<?php endif; ?>
 
 	<footer class="entry-meta">
-		<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
-			<?php
-				/* translators: used between list items, there is a space after the comma */
-				$categories_list = get_the_category_list( __( ', ', 'receptes' ) );
-				if ( $categories_list && receptes_categorized_blog() ) :
-			?>
-			<span class="cat-links">
-				<?php printf( __( 'Esto forma parte de %1$s', 'receptes' ), $categories_list ); ?>
-			</span>
-			<?php endif; // End if categories ?>
 
-			<?php
-				/* translators: used between list items, there is a space after the comma */
-				$tags_list = get_the_tag_list( '', __( ', ', 'receptes' ) );
-				if ( $tags_list ) :
-			?>
-			<span class="sep"> | </span>
-			<span class="tags-links">
-				<?php printf( __( 'Tagged %1$s', 'receptes' ), $tags_list ); ?>
-			</span>
-			<?php endif; // End if $tags_list ?>
-		<?php endif; // End if 'post' == get_post_type() ?>
+		<div class="related-links footer-block">
+			<?php wpapi_more_from_cat(); ?>
+		</div>
 
 		<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-		<span class="sep"> | </span>
-		<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'receptes' ), __( '1 Comment', 'receptes' ), __( '% Comments', 'receptes' ) ); ?></span>
+
+		<div class="comments-link footer-block"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escríbenos un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></div>
 		<?php endif; ?>
 
-		<?php edit_post_link( __( 'Edit', 'receptes' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'editar receta', 'receptes' ), '<div class="edit-link footer-block">', '</div>' ); ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->

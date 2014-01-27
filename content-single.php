@@ -2,12 +2,13 @@
 /**
  * @package receptes
  */
+$dificulty = get_post_meta($post->ID, 'custom_dificulty', true); 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
-
+		<div> <?php echo $dificulty ?></div>
 		<div class="entry-meta">
 			<?php receptes_posted_on(); ?>
 		</div><!-- .entry-meta -->

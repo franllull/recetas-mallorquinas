@@ -12,6 +12,11 @@ $time = get_post_meta($post->ID, 'custom_time', true);
 $servings = get_post_meta($post->ID, 'custom_servings', true); 
 $image = get_post_meta($post->ID, 'custom_image', true); 
 $ingredientes = unserialize($post_meta_data['custom_ingredientes'][0]);
+$postid = get_the_ID();
+$idserving = "serving-".$postid."";
+$idprevious = "previous-".$postid."";
+$idlist = "list-".$postid."";
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -55,35 +60,35 @@ $ingredientes = unserialize($post_meta_data['custom_ingredientes'][0]);
 			<h2>Ingredientes</h2>
 			<div class="grid">
 				<?php
-					echo '<ul class="ingredients unit three-of-four">';  
+					echo '<ul id="'.$idlist.'" class="ingredients unit three-of-four">';  
 					foreach ($ingredientes as $string) {  
 					    echo '<li class="ingredient"><input type="checkbox" /> '.$string.'</li>';  
 					}  
 					echo '</ul>';  
 				?>
 				<div class="mesures unit one-of-four">
-					<input type="text" class="serving" name="servings" maxlength="2" value="<?= $servings ?>" />
-					<input type="hidden" id="previousServing" value="5"/>
+					<input type="text" id="<?= $idserving ?>" class="serving" name="servings" maxlength="2" value="<?= $servings ?>" />
+					<input type="hidden" id="<?= $idprevious ?>" value="5"/>
 					<span class="icon-bol"></span>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
 			jQuery(function() {
-			    jQuery(".serving").bind('keyup', function(event) {
-			        var previousValue = parseFloat(jQuery("#previousServing").val());
+			    jQuery("#<?= $idserving ?>").bind('keyup', function(event) {
+			        var previousValue = parseFloat(jQuery("#<?= $idprevious ?>").val());
 			        var newValue = parseFloat(jQuery(event.target).val());
 			        if (previousValue && newValue) {
-			            jQuery(".ingredient").each(function(index, elem) {
+			            jQuery("#<?= $idlist ?> .ingredient").each(function(index, elem) {
 			                var ingredientNow = jQuery('i', elem);
 			                var oldIngredientAmount = ingredientNow.text();
 			                var newIngredientAmount = (oldIngredientAmount * newValue / previousValue).toFixed(1);
 			                ingredientNow.text(newIngredientAmount);
 			             });
-			            jQuery("#previousServing").val(newValue);
+			            jQuery("#<?= $idprevious ?>").val(newValue);
 			        }
 			    });
-				jQuery(".serving").on('input', function (event) { 
+				jQuery("#<?= $idserving ?>").on('input', function (event) { 
 				    this.value = this.value.replace(/[^0-9]/g, '');
 				});
 			});

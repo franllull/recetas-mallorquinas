@@ -409,21 +409,28 @@ h2 {
 	}
 
 	footer {
-		.footer-block {
-			border-top: 1px solid lighten($lgr, 10%);
-			@include padded-sides(20px, 25px);
-			display: block;
-		}
-		
+		border-top: 1px solid $lgr;
 		.comments-link {
 			a {
 				display: block;
 				text-align: center;
+				@include padded-sides(10px, 15px);
+				min-height: 50px;
 			}
 			
 			.icon-comment {
 				font-size: 30px;
 				vertical-align: middle;
+			}
+		}
+
+		.share-link  {
+			border-left: 1px solid $lgr;
+			a {
+				display: block;
+				text-align: center;
+				@include padded-sides(10px, 15px);
+				min-height: 50px;
 			}
 		}
 		.edit-link {
@@ -592,6 +599,8 @@ h2 {
 		}
 	}
 	.widget_categories {text-align: center;}
+	.post footer .share-link  {border-left: none; border-top: 1px solid $lgr;}
+	.post .entry-content .entry-block .ingredients {border-right: none; border-bottom: 1px solid $lgr;}
 }
 
 @media screen and (max-width: 480px) {

@@ -9,6 +9,7 @@
 $post_meta_data = get_post_custom($post->ID);
 $dificulty = get_post_meta($post->ID, 'custom_dificulty', true); 
 $time = get_post_meta($post->ID, 'custom_time', true); 
+$advice = get_post_meta($post->ID, 'custom_advice', true); 
 $servings = get_post_meta($post->ID, 'custom_servings', true); 
 $image = get_post_meta($post->ID, 'custom_image', true); 
 $ingredientes = unserialize($post_meta_data['custom_ingredientes'][0]);
@@ -98,7 +99,6 @@ $idlist = "list-".$postid."";
 		<div class="preparation-box entry-block">
 			<h2>Preparación</h2>
 			<?php the_content( __( 'Ver toda la receta <span class="meta-nav">&rarr;</span>', 'receptes' ) ); ?>
-
 			<?php
 				wp_link_pages( array(
 					'before' => '<div class="page-links">' . __( 'Pages:', 'receptes' ),
@@ -106,18 +106,28 @@ $idlist = "list-".$postid."";
 				) );
 			?>
 		</div>
-
+		<?php if (!empty($advice)) { ?>
+			<div class="advice entry-block">
+				<h2>Consejos</h2>
+				<?php echo $advice ?>	
+			</div>
+		<?php } ?>
+	
 	</div><!-- .entry-content -->
 	
 	<?php endif; ?>
 
-	<footer class="entry-meta">
+	<footer class="entry-meta grid">
 
 		<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-		<span class="comments-link footer-block"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escríbenos un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></span>
+		<span class="comments-link unit one-of-two"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escribe un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></span>
 		<?php endif; ?>
 
-		<?php edit_post_link( __( 'editar receta', 'receptes' ), '<div class="edit-link footer-block">', '</div>' ); ?>
+		<div class="share-link unit one-of-two">
+			<a target="_blank" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>">Compártela en Facebook</a>
+		</div>
+
+		<?php edit_post_link( __( 'editar receta', 'receptes' ), '<div class="edit-link">', '</div>' ); ?>
 
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->

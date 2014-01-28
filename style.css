@@ -320,25 +320,32 @@ h2 {
     .post .entry-content h3, .type-page .entry-content h3 {
       font-weight: bold;
       font-size: 20px; }
-  .post footer .footer-block, .type-page footer .footer-block {
-    border-top: 1px solid #ecebe4;
-    padding: 20px 25px;
-    display: block; }
-  .post footer .comments-link a, .type-page footer .comments-link a {
-    display: block;
-    text-align: center; }
-  .post footer .comments-link .icon-comment, .type-page footer .comments-link .icon-comment {
-    font-size: 30px;
-    vertical-align: middle; }
-  .post footer .edit-link, .type-page footer .edit-link {
-    text-align: center;
-    border-top: 1px dashed #c9774c; }
-    .post footer .edit-link a, .type-page footer .edit-link a {
-      -webkit-transition: color 0.5s;
-      -moz-transition: color 0.5s;
-      transition: color 0.5s; }
-      .post footer .edit-link a:hover, .type-page footer .edit-link a:hover {
-        color: #d89e7f; }
+  .post footer, .type-page footer {
+    border-top: 1px solid #d7d5c6; }
+    .post footer .comments-link a, .type-page footer .comments-link a {
+      display: block;
+      text-align: center;
+      padding: 10px 15px;
+      min-height: 50px; }
+    .post footer .comments-link .icon-comment, .type-page footer .comments-link .icon-comment {
+      font-size: 30px;
+      vertical-align: middle; }
+    .post footer .share-link, .type-page footer .share-link {
+      border-left: 1px solid #d7d5c6; }
+      .post footer .share-link a, .type-page footer .share-link a {
+        display: block;
+        text-align: center;
+        padding: 10px 15px;
+        min-height: 50px; }
+    .post footer .edit-link, .type-page footer .edit-link {
+      text-align: center;
+      border-top: 1px dashed #c9774c; }
+      .post footer .edit-link a, .type-page footer .edit-link a {
+        -webkit-transition: color 0.5s;
+        -moz-transition: color 0.5s;
+        transition: color 0.5s; }
+        .post footer .edit-link a:hover, .type-page footer .edit-link a:hover {
+          color: #d89e7f; }
 
 .site-footer {
   border-top: 1px solid #d7d5c6;
@@ -456,7 +463,15 @@ h2 {
       height: 400px; }
 
   .widget_categories {
-    text-align: center; } }
+    text-align: center; }
+
+  .post footer .share-link {
+    border-left: none;
+    border-top: 1px solid #d7d5c6; }
+
+  .post .entry-content .entry-block .ingredients {
+    border-right: none;
+    border-bottom: 1px solid #d7d5c6; } }
 @media screen and (max-width: 480px) {
   .molinet {
     min-height: 80px;

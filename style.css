@@ -39,7 +39,8 @@ and Blueprint http://www.blueprintcss.org/
   width: 100%;
   text-align: center; }
   .button:hover, .single .comments-area .form-submit input:hover {
-    background-color: #6b3314; }
+    background-color: #6b3314;
+    color: #dedede; }
 
 /* Links */
 a {
@@ -223,6 +224,9 @@ h2 {
   margin: 0 auto;
   margin-bottom: 10px; }
 
+.hentry {
+  margin: 0 0 40px; }
+
 .post, .type-page {
   background-color: white;
   border: 1px solid #d7d5c6; }
@@ -318,14 +322,8 @@ h2 {
       font-size: 20px; }
   .post footer .footer-block, .type-page footer .footer-block {
     border-top: 1px solid #ecebe4;
-    padding: 20px 25px; }
-  .post footer .related-links h3, .type-page footer .related-links h3 {
-    font-size: 20px;
-    padding: 5px 0 15px 0;
-    color: #a34d1f;
-    font-weight: bold; }
-  .post footer .related-links ul, .type-page footer .related-links ul {
-    list-style: none; }
+    padding: 20px 25px;
+    display: block; }
   .post footer .comments-link a, .type-page footer .comments-link a {
     display: block;
     text-align: center; }
@@ -341,12 +339,6 @@ h2 {
       transition: color 0.5s; }
       .post footer .edit-link a:hover, .type-page footer .edit-link a:hover {
         color: #d89e7f; }
-  .post .related-by-cat, .type-page .related-by-cat {
-    line-height: 115%; }
-    .post .related-by-cat li, .type-page .related-by-cat li {
-      padding-right: 15px; }
-      .post .related-by-cat li img, .type-page .related-by-cat li img {
-        margin-top: 10px; }
 
 .site-footer {
   border-top: 1px solid #d7d5c6;
@@ -364,12 +356,28 @@ h2 {
   max-width: 750px;
   margin: 0 auto; }
 .single .navigation-post {
-  padding: 20px;
-  border-bottom: 1px solid #d7d5c6; }
+  padding: 20px; }
 .single .comments-area {
   padding: 20px 0; }
   .single .comments-area .comment-reply-title {
     display: none; }
+  .single .comments-area .label {
+    display: inline-block;
+    width: 30%; }
+  .single .comments-area .comment-form .comment-form-url {
+    display: none; }
+  .single .comments-area .comment-form .comment-notes {
+    display: none; }
+  .single .comments-area .comment-form .comment-form-author {
+    display: inline-block;
+    width: 46%;
+    margin: 10px 3% 10px 0; }
+  .single .comments-area .comment-form .comment-form-email {
+    display: inline-block;
+    width: 46%;
+    margin: 10px 3% 10px 0; }
+  .single .comments-area .comment-form p label {
+    display: block; }
   .single .comments-area .logged-in-as {
     margin-bottom: 10px; }
   .single .comments-area .comment-form-comment label {
@@ -388,8 +396,40 @@ h2 {
       border-radius: 0;
       box-shadow: 0 0 0;
       font-size: 16px;
-      text-shadow: 0 1px 0 #c9774c;
+      text-shadow: 0 0 0 transparent;
       margin: 15px 0; }
+  .single .comments-area ol {
+    list-style: none;
+    margin: 0; }
+  .single .comments-area .comments-title {
+    display: none; }
+  .single .comments-area .comment-body {
+    border: 1px solid #d7d5c6;
+    padding: 20px 25px 20px;
+    margin-bottom: 20px; }
+  .single .comments-area .comment-meta {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d7d5c6; }
+  .single .comments-area .comment-awaiting-moderation {
+    color: #999999;
+    font-style: italic; }
+  .single .comments-area .reply {
+    display: none; }
+  .single .comments-area .comment-author {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top; }
+  .single .comments-area .comment-metadata {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    text-align: right;
+    padding-top: 7px; }
+  .single .comments-area .fn {
+    padding: 10px;
+    vertical-align: super; }
+  .single .comments-area .says {
+    display: none; }
 
 .archive-title {
   font-size: 35px;
@@ -411,6 +451,9 @@ h2 {
   .molinet {
     height: 400px;
     background-size: 46%; }
+    .molinet .molinet-inner {
+      background-size: 46%;
+      height: 400px; }
 
   .widget_categories {
     text-align: center; } }
@@ -419,6 +462,10 @@ h2 {
     min-height: 80px;
     background-size: 60%;
     height: 200px; }
+    .molinet .molinet-inner {
+      background-size: 60%;
+      height: 200px;
+      min-height: 80px; }
 
   .site-branding .site-title {
     margin-top: 20px;

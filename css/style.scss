@@ -104,6 +104,7 @@ $cream : #C0B17E;
 	text-align: center;
 	&:hover {
 		background-color: darken($ramallet, 13%);
+		color: darken($wh, 13%);
 	}
 }
 
@@ -310,6 +311,9 @@ h2 {
 }
 
 // post styles
+.hentry {
+	margin: 0 0 40px;
+}
 .post, .type-page {
 	background-color: white;
 	border: 1px solid $lgr;
@@ -408,18 +412,9 @@ h2 {
 		.footer-block {
 			border-top: 1px solid lighten($lgr, 10%);
 			@include padded-sides(20px, 25px);
+			display: block;
 		}
-		.related-links {
-			h3 {
-				font-size: 20px;
-				padding: 5px 0 15px 0;
-				color: $ramallet;
-				font-weight: bold;
-			}
-			ul {
-				list-style: none;
-			}
-		}
+		
 		.comments-link {
 			a {
 				display: block;
@@ -436,15 +431,6 @@ h2 {
 			border-top: 1px dashed $ramalight;
 			a {
 				@include hovered-lighten($ramalight);
-			}
-		}
-	}
-	.related-by-cat {
-		line-height: 115%;
-		li {
-			padding-right: 15px;
-			img {
-				margin-top: 10px;
 			}
 		}
 	}
@@ -481,14 +467,38 @@ h2 {
 
 	.navigation-post {
 		padding: 20px;
-		border-bottom: 1px solid $lgr;
 	}
 
 	.comments-area {
 		padding: 20px 0;
+
 		.comment-reply-title {
 			display: none;
 		}
+		.label {
+			display: inline-block;
+			width: 30%;
+		}
+		.comment-form {
+			.comment-form-url {display: none;}
+			.comment-notes {display: none;}
+			.comment-form-author {
+				display: inline-block;
+				width: 46%;
+				margin: 10px 3% 10px 0;
+			}
+			.comment-form-email {
+				display: inline-block;
+				width: 46%;
+				margin: 10px 3% 10px 0;
+			}
+			p {
+				label {
+					display: block;
+				}
+			}
+
+		}		
 		.logged-in-as {
 			margin-bottom: 10px;
 		}
@@ -513,9 +523,48 @@ h2 {
 				border-radius: 0;
 				box-shadow: 0 0 0;
 				font-size: 16px;
-				text-shadow: 0 1px 0 $ramalight;
+				text-shadow: 0 0 0 transparent;
 				margin: 15px 0;
 			}
+		}
+		ol {
+			list-style: none;
+			margin: 0;
+		}
+		.comments-title {
+			display: none;
+		}
+		.comment-body {
+			border: 1px solid $lgr;
+			@include padded-sides(20px 25px);
+			margin-bottom: 20px;
+		}
+
+		.comment-meta {
+			margin-bottom: 20px;
+			border-bottom: 1px solid $lgr;
+
+		}
+		.comment-awaiting-moderation {color: $gr; font-style: italic;}
+		.reply {display: none;}
+		.comment-author {
+			display: inline-block;
+			width: 48%;
+			vertical-align: top;
+		}
+		.comment-metadata {
+			display: inline-block;
+			width: 48%;
+			vertical-align: top;
+			text-align: right;
+			padding-top: 7px;
+		}
+		.fn {
+			padding: 10px;
+			vertical-align: super;
+		}
+		.says {
+			display: none;
 		}
 	}
 
@@ -537,6 +586,10 @@ h2 {
 	.molinet {
 		height: 400px;
 		background-size: 46%;
+		.molinet-inner {
+			background-size: 46%;
+			height: 400px;
+		}
 	}
 	.widget_categories {text-align: center;}
 }
@@ -546,6 +599,11 @@ h2 {
 		min-height: 80px;
 		background-size: 60%;
 		height: 200px;
+		.molinet-inner {
+			background-size: 60%;
+			height: 200px;
+			min-height: 80px;
+		}
 	}
 	.site-branding .site-title {margin-top: 20px; font-size: 30px;}
 	.site-branding .site-subtitle {font-size: 20px;}

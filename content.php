@@ -113,15 +113,11 @@ $idlist = "list-".$postid."";
 
 	<footer class="entry-meta">
 
-		<div class="related-links footer-block">
-			<?php wpapi_more_from_cat(); ?>
-		</div>
-
 		<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-
-		<div class="comments-link footer-block"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escríbenos un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></div>
+		<span class="comments-link footer-block"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escríbenos un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></span>
 		<?php endif; ?>
 
 		<?php edit_post_link( __( 'editar receta', 'receptes' ), '<div class="edit-link footer-block">', '</div>' ); ?>
+
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->

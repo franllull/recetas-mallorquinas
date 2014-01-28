@@ -82,7 +82,6 @@ and Blueprint http://www.blueprintcss.org/
 	user-select: none;
 }
 
-
 //colors
 $bl: #666;
 $wh: #fff;
@@ -112,8 +111,12 @@ $cream : #C0B17E;
 
 /* Links */
 a {
-	color: $ramallet;
+	@include transition (all 0.3s ease);
+	color: $ramalight;
 	text-decoration: none;
+	&:hover {
+		color: darken($ramallet, 5%);
+	}
 }
 
 p {
@@ -158,6 +161,7 @@ h2 {
 			font-size: 48px;
 			font-weight: bold;
 			@include hovered-darken($ramallet);
+			color: $ramallet;
 		}
 	}
 	.site-subtitle {
@@ -179,11 +183,36 @@ h2 {
 	}
 }
 
-@include keyframes(pulsate) {
-    0% {opacity: .7;}
-    50% {opacity: 1;}
-    100% {opacity: .7;}
+.navigation-main {
+	float: none;
+	margin: 0;
+	li {
+		float: none;
+		@include transition (color 0.4s);
+		border-bottom: 1px solid $lgr;
+		&:nth-child(1) {border-top: 1px solid $lgr;}
+		&:hover {background-color: darken($wh, 2%);}
+		a {
+			@include padded-sides(7px, 25px);
+			width: 100%;
+			display: block;
+			color: $gr;
+			&:after {
+				display: inline-block;
+				font-family: 'receptes';
+				content: "\e601";
+				color: $gr;
+				position: absolute;
+				right: 15px;
+			}
+		}
+	}
 }
+
+.navigation-main.toggled {
+	ul {display: block;}
+}
+
 
 .tomatigues {
 	background-image: url("images/tomatigues-long.png");
@@ -254,6 +283,14 @@ h2 {
 	}	
 }
 
+.widget_categories.sticky {
+	position: fixed;
+	top: 30px;
+	max-width: 365px;
+	width: 100%;
+	z-index: 10;
+}
+
 
 .widget_text {
 	background-color: $wh;
@@ -273,7 +310,7 @@ h2 {
 }
 
 // post styles
-.post {
+.post, .type-page {
 	background-color: white;
 	border: 1px solid $lgr;
 	
@@ -373,6 +410,12 @@ h2 {
 			@include padded-sides(20px, 25px);
 		}
 		.related-links {
+			h3 {
+				font-size: 20px;
+				padding: 5px 0 15px 0;
+				color: $ramallet;
+				font-weight: bold;
+			}
 			ul {
 				list-style: none;
 			}
@@ -381,10 +424,6 @@ h2 {
 			a {
 				display: block;
 				text-align: center;
-				@include transition(color .5s ease);
-				&:hover {
-					color: $ramalight;
-				}
 			}
 			
 			.icon-comment {
@@ -401,8 +440,34 @@ h2 {
 		}
 	}
 	.related-by-cat {
+		line-height: 115%;
 		li {
-			@include padded-sides(10px, 10px);
+			padding-right: 15px;
+			img {
+				margin-top: 10px;
+			}
+		}
+	}
+}
+
+.site-footer {
+	border-top: 1px solid $lgr;
+	font-size: 15px;
+	padding: 20px 0;
+	text-align: center;
+	.site-info {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+}
+
+
+//when page
+
+.type-page {
+	.entry-header {
+		.entry-title {
+			border-right: none;
 		}
 	}
 }
@@ -413,6 +478,47 @@ h2 {
 		max-width: 750px;
 		margin: 0 auto;
 	}
+
+	.navigation-post {
+		padding: 20px;
+		border-bottom: 1px solid $lgr;
+	}
+
+	.comments-area {
+		padding: 20px 0;
+		.comment-reply-title {
+			display: none;
+		}
+		.logged-in-as {
+			margin-bottom: 10px;
+		}
+		.comment-form-comment {
+
+			label {
+				display: none;
+			}
+			textarea {
+				width: 100%;
+				max-width: 100%;
+				max-height: 400px;
+				padding: 10px;
+			}
+		}
+		.form-allowed-tags {display: none;}
+		.form-submit {
+			text-align: right;
+			input {
+				@extend .button;
+				border: none;
+				border-radius: 0;
+				box-shadow: 0 0 0;
+				font-size: 16px;
+				text-shadow: 0 1px 0 $ramalight;
+				margin: 15px 0;
+			}
+		}
+	}
+
 }
 
 .archive-title {
@@ -421,10 +527,6 @@ h2 {
 	text-align: center;
 	font-family: "ff-prater-script-web";
 	margin-bottom: 20px;
-}
-
-footer {
-	@include padded-sides(20px, 25px);
 }
 
 

@@ -9,25 +9,26 @@
 ?><!DOCTYPE html>
 <html style="margin-top: 0!important" <?php language_attributes(); ?>>
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/normalize.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/toast/toast.css" media="screen" />
-<script type="text/javascript">
-  (function() {
-    var config = {
-      kitId: 'sku3ytw',
-      scriptTimeout: 3000
-    };
-    var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
-  })();
+	<meta name="description" content="<?php bloginfo( 'description' ); ?>">
+	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width" />
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/normalize.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/toast/toast.css" media="screen" />
+	<script type="text/javascript">
+	  (function() {
+	    var config = {
+	      kitId: 'sku3ytw',
+	      scriptTimeout: 3000
+	    };
+	    var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+	  })();
 
-</script>
+	</script>
 
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -42,19 +43,12 @@
 				</a>
 				<div class="site-branding unit two-of-four text-center">
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<p class="site-description hidden"><?php bloginfo( 'description' ); ?></p>
 					<h2 class="site-subtitle"></h2><a href="#" class="boto-random"><span class="icon-mallorca"></span></a>
-					<h2 class="site-description hidden"><?php bloginfo( 'description' ); ?></h2>
 				</div>
 				<a class="linkblock" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<div class="unit one-of-four tomatigues hidden-mobile"></div>
 				</a>
-
-			<nav id="site-navigation" class="navigation-main" role="navigation">
-				<h1 class="menu-toggle"><?php _e( 'Menu', 'receptes' ); ?></h1>
-				<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'receptes' ); ?>"><?php _e( 'Skip to content', 'receptes' ); ?></a></div>
-
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</nav><!-- #site-navigation -->
 			</div>
 		</header><!-- #masthead -->
 <script type="text/javascript">

@@ -117,16 +117,19 @@ $idlist = "list-".$postid."";
 	
 	<?php endif; ?>
 
-	<footer class="entry-meta grid">
+	<footer class="entry-meta">
 
-		<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-		<span class="comments-link unit one-of-two"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escribe un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></span>
-		<?php endif; ?>
 
-		<div class="share-link unit one-of-two">
-			<a target="_blank" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&t=<?php the_title(); ?>">Compártela en Facebook</a>
-		</div>
+		<div class="grid">
+			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
+			<span class="comments-link unit one-of-two"><?php comments_popup_link( __( '<span class="icon-comment"></span> Escribe un comentario', 'receptes' ), __( '<span class="icon-comment"></span> Ver 1 comentario', 'receptes' ), __( '% comentarios', 'receptes' ) ); ?></span>
+			<?php endif; ?>
 
+			<div class="like-link unit one-of-two">
+				<?php if(function_exists('like_counter_p')) { like_counter_p('Mel de abella peluda'); } ?>
+			</div>
+		</div>	
+	
 		<?php edit_post_link( __( 'editar receta', 'receptes' ), '<div class="edit-link">', '</div>' ); ?>
 
 	</footer><!-- .entry-meta -->

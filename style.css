@@ -114,6 +114,16 @@ h2 {
 .navigation-main {
   float: none;
   margin: 0; }
+  .navigation-main .menu-toggle {
+    padding: 10px;
+    background-color: white;
+    color: white;
+    text-align: center;
+    font-weight: bold; }
+  .navigation-main .icon-list {
+    font-size: 30px;
+    color: #c0b17e;
+    vertical-align: middle; }
   .navigation-main li {
     float: none;
     -webkit-transition: color 0.4s;
@@ -128,12 +138,12 @@ h2 {
       padding: 7px 25px;
       width: 100%;
       display: block;
-      color: #999999; }
+      color: #c0b17e; }
       .navigation-main li a:after {
         display: inline-block;
         font-family: 'receptes';
         content: "\e601";
-        color: #999999;
+        color: #c0b17e;
         position: absolute;
         right: 15px; }
 
@@ -330,22 +340,42 @@ h2 {
     .post footer .comments-link .icon-comment, .type-page footer .comments-link .icon-comment {
       font-size: 30px;
       vertical-align: middle; }
-    .post footer .share-link, .type-page footer .share-link {
-      border-left: 1px solid #d7d5c6; }
-      .post footer .share-link a, .type-page footer .share-link a {
+    .post footer .like-link, .type-page footer .like-link {
+      border-left: 1px solid #d7d5c6;
+      text-align: center; }
+      .post footer .like-link .icon-abellapeluda, .type-page footer .like-link .icon-abellapeluda {
+        font-size: 28px;
+        vertical-align: middle; }
+      .post footer .like-link .ldc-ul_cont, .type-page footer .like-link .ldc-ul_cont {
+        vertical-align: middle;
+        background: transparent;
+        float: none;
+        border: none;
+        font-family: "ff-meta-serif-web-pro", sans-serif;
+        font-size: 17px;
+        font-weight: normal;
+        padding: 10px 15px;
+        display: inline-block;
+        min-height: 50px;
+        margin-bottom: 0;
+        color: #c9774c; }
+        .post footer .like-link .ldc-ul_cont img, .type-page footer .like-link .ldc-ul_cont img {
+          display: none; }
+        .post footer .like-link .ldc-ul_cont:hover, .type-page footer .like-link .ldc-ul_cont:hover {
+          color: #a34d1f; }
+      .post footer .like-link a, .type-page footer .like-link a {
         display: block;
         text-align: center;
         padding: 10px 15px;
         min-height: 50px; }
     .post footer .edit-link, .type-page footer .edit-link {
+      display: block;
+      padding: 10px;
+      background-color: #c9774c;
       text-align: center;
       border-top: 1px dashed #c9774c; }
       .post footer .edit-link a, .type-page footer .edit-link a {
-        -webkit-transition: color 0.5s;
-        -moz-transition: color 0.5s;
-        transition: color 0.5s; }
-        .post footer .edit-link a:hover, .type-page footer .edit-link a:hover {
-          color: #d89e7f; }
+        color: white; }
 
 .site-footer {
   border-top: 1px solid #d7d5c6;
@@ -402,7 +432,7 @@ h2 {
       border: none;
       border-radius: 0;
       box-shadow: 0 0 0;
-      font-size: 16px;
+      font-size: 17px;
       text-shadow: 0 0 0 transparent;
       margin: 15px 0; }
   .single .comments-area ol {
@@ -447,13 +477,17 @@ h2 {
 
 @media screen and (max-width: 768px) {
   .site-branding .site-title {
-    margin-top: 20px; }
+    margin-top: 20px;
+    line-height: 30px; }
 
   .site-branding .site-title a {
     font-size: 30px; }
 
   .site-branding .site-subtitle {
     font-size: 20px; }
+
+  .widget_text {
+    display: none; }
 
   .molinet {
     height: 400px;
@@ -462,10 +496,10 @@ h2 {
       background-size: 46%;
       height: 400px; }
 
-  .widget_categories {
-    text-align: center; }
+  .tomatigues {
+    display: none; }
 
-  .post footer .share-link {
+  .post footer .like-link {
     border-left: none;
     border-top: 1px solid #d7d5c6; }
 
@@ -476,7 +510,11 @@ h2 {
   .molinet {
     min-height: 80px;
     background-size: 60%;
-    height: 200px; }
+    height: 200px;
+    position: fixed;
+    top: 25px;
+    left: -200px;
+    opacity: .7; }
     .molinet .molinet-inner {
       background-size: 60%;
       height: 200px;
@@ -487,4 +525,20 @@ h2 {
     font-size: 30px; }
 
   .site-branding .site-subtitle {
-    font-size: 20px; } }
+    font-size: 20px; }
+
+  .post .entry-header {
+    padding-bottom: 0px; }
+    .post .entry-header .entry-title h1 {
+      font-size: 25px; }
+    .post .entry-header .unit-fluid {
+      display: block;
+      border-right: none !important;
+      width: 100%; }
+    .post .entry-header .entry-meta {
+      text-align: center;
+      border-top: 1px solid #d7d5c6;
+      border-bottom: 1px solid #d7d5c6;
+      margin-top: 10px;
+      padding: 10px 0;
+      margin-left: 0px; } }

@@ -1,0 +1,78 @@
+//mixins
+
+@mixin underline($color:$gr) {
+  text-decoration: none;
+  border-bottom: 1px dashed $color;
+  display: inline-block;
+}
+
+@mixin subtitle($size) {
+	color: $gr;
+	font-weight: 100;
+	line-height: 110%;
+	font-size: $size;
+}
+
+@mixin padded-sides ($val1: 20px, $val2:20px){
+	padding: $val1 $val2;
+}
+
+@mixin separate {
+	margin-bottom: 20px;
+}
+
+@mixin space($percentage:0%) {
+	display: inline-block;
+	width: $percentage;
+	margin-left:-3px;
+	vertical-align: top;
+}
+
+@mixin hovered-darken($color){
+	@include transition (color 0.5s);
+	&:hover {
+		color: darken($color, 13%);
+	}
+}
+
+@mixin hovered-lighten($color){
+	@include transition (color 0.5s);
+	&:hover {
+		color: lighten($color, 13%);
+	}
+}
+
+@mixin unselectable {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+}
+
+//colors
+$bl: #666;
+$wh: #fff;
+$gr: #999999;
+$lgr: #D7D5C6;
+$ramallet: #A34D1F;
+$ramalight: #C9774C;
+$cream : #C0B17E;
+
+//coolclasses
+.hidden {display:none;}
+.text-center {text-align: center;}
+.button {
+	@include transition (all 0.3s ease);
+	display: inline-block;
+	background-color: $ramallet;
+	color: $wh;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+	&:hover {
+		background-color: darken($ramallet, 13%);
+		color: darken($wh, 13%);
+	}
+}
+

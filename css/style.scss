@@ -28,87 +28,7 @@ and Blueprint http://www.blueprintcss.org/
 @import url('normalize.css');
 @import url('fonts.css');
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
-
-
-//mixins
-
-@mixin underline($color:$gr) {
-  text-decoration: none;
-  border-bottom: 1px dashed $color;
-  display: inline-block;
-}
-
-@mixin subtitle($size) {
-	color: $gr;
-	font-weight: 100;
-	line-height: 110%;
-	font-size: $size;
-}
-
-@mixin padded-sides ($val1: 20px, $val2:20px){
-	padding: $val1 $val2;
-}
-
-@mixin separate {
-	margin-bottom: 20px;
-}
-
-@mixin space($percentage:0%) {
-	display: inline-block;
-	width: $percentage;
-	margin-left:-3px;
-	vertical-align: top;
-}
-
-@mixin hovered-darken($color){
-	@include transition (color 0.5s);
-	&:hover {
-		color: darken($color, 13%);
-	}
-}
-
-@mixin hovered-lighten($color){
-	@include transition (color 0.5s);
-	&:hover {
-		color: lighten($color, 13%);
-	}
-}
-
-@mixin unselectable {
-	-webkit-user-select: none; /* Chrome/Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+ */
-	-o-user-select: none;
-	user-select: none;
-}
-
-//colors
-$bl: #666;
-$wh: #fff;
-$gr: #999999;
-$lgr: #D7D5C6;
-$ramallet: #A34D1F;
-$ramalight: #C9774C;
-$cream : #C0B17E;
-
-//coolclasses
-.hidden {display:none;}
-.text-center {text-align: center;}
-.button {
-	@include transition (all 0.3s ease);
-	display: inline-block;
-	background-color: $ramallet;
-	color: $wh;
-	padding: 10px;
-	width: 100%;
-	text-align: center;
-	&:hover {
-		background-color: darken($ramallet, 13%);
-		color: darken($wh, 13%);
-	}
-}
-
-//wp-overrides
+@import 'mixins';
 
 /* Links */
 a {
@@ -187,6 +107,18 @@ h2 {
 .navigation-main {
 	float: none;
 	margin: 0;
+	.menu-toggle {
+		padding: 10px;
+		background-color: $wh;
+		color: $wh;
+		text-align: center;
+		font-weight: bold;
+	}
+	.icon-list {
+		font-size: 30px;
+		color: $cream;
+		vertical-align: middle;
+	}
 	li {
 		float: none;
 		@include transition (color 0.4s);
@@ -197,12 +129,12 @@ h2 {
 			@include padded-sides(7px, 25px);
 			width: 100%;
 			display: block;
-			color: $gr;
+			color: $cream;
 			&:after {
 				display: inline-block;
 				font-family: 'receptes';
 				content: "\e601";
-				color: $gr;
+				color: $cream;
 				position: absolute;
 				right: 15px;
 			}
@@ -424,8 +356,31 @@ h2 {
 			}
 		}
 
-		.share-link  {
+		.like-link  {
 			border-left: 1px solid $lgr;
+			text-align: center;
+			.icon-abellapeluda {
+				font-size: 28px;
+				vertical-align: middle;
+			}
+			.ldc-ul_cont {
+				vertical-align: middle;
+				background: transparent;
+				float: none;
+				border: none;
+				font-family: "ff-meta-serif-web-pro", sans-serif;
+				font-size: 17px;
+				font-weight: normal;
+				padding: 10px 15px;
+				display: inline-block;
+				min-height: 50px;
+				margin-bottom: 0;
+				img {display: none;}
+				color: $ramalight;
+				&:hover {
+					color: $ramallet;
+				}
+			}
 			a {
 				display: block;
 				text-align: center;
@@ -434,10 +389,13 @@ h2 {
 			}
 		}
 		.edit-link {
+			display: block;
+			padding: 10px;
+			background-color: $ramalight;
 			text-align: center;
 			border-top: 1px dashed $ramalight;
 			a {
-				@include hovered-lighten($ramalight);
+				color: $wh;
 			}
 		}
 	}
@@ -529,7 +487,7 @@ h2 {
 				border: none;
 				border-radius: 0;
 				box-shadow: 0 0 0;
-				font-size: 16px;
+				font-size: 17px;
 				text-shadow: 0 0 0 transparent;
 				margin: 15px 0;
 			}
@@ -585,11 +543,11 @@ h2 {
 	margin-bottom: 20px;
 }
 
-
 @media screen and (max-width: 768px) {
-	.site-branding .site-title {margin-top: 20px;}
+	.site-branding .site-title {margin-top: 20px; line-height: 30px;}
 	.site-branding .site-title a {font-size: 30px;}
 	.site-branding .site-subtitle {font-size: 20px;}
+	.widget_text {display: none;}
 	.molinet {
 		height: 400px;
 		background-size: 46%;
@@ -598,8 +556,8 @@ h2 {
 			height: 400px;
 		}
 	}
-	.widget_categories {text-align: center;}
-	.post footer .share-link  {border-left: none; border-top: 1px solid $lgr;}
+	.tomatigues {display: none;}
+	.post footer .like-link  {border-left: none; border-top: 1px solid $lgr;}
 	.post .entry-content .entry-block .ingredients {border-right: none; border-bottom: 1px solid $lgr;}
 }
 
@@ -608,6 +566,11 @@ h2 {
 		min-height: 80px;
 		background-size: 60%;
 		height: 200px;
+		position: fixed;
+		top: 25px;
+		left: -200px;
+		opacity: .7;
+
 		.molinet-inner {
 			background-size: 60%;
 			height: 200px;
@@ -616,6 +579,30 @@ h2 {
 	}
 	.site-branding .site-title {margin-top: 20px; font-size: 30px;}
 	.site-branding .site-subtitle {font-size: 20px;}
+
+	.post {
+		.entry-header {
+			padding-bottom: 0px;
+			.entry-title {
+				h1 {
+					font-size: 25px;
+				}
+			}
+			.unit-fluid {
+				display: block;
+				border-right: none!important;
+				width: 100%;
+			}
+			.entry-meta {
+				text-align: center;
+				border-top: 1px solid $lgr;
+				border-bottom: 1px solid $lgr;
+				margin-top: 10px;
+				padding: 10px 0;
+				margin-left: 0px;
+			}
+		}
+	}
 
 }
 

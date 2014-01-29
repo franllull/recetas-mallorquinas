@@ -47,7 +47,7 @@
 					<h2 class="site-subtitle"></h2><a href="#" class="boto-random"><span class="icon-mallorca"></span></a>
 				</div>
 				<a class="linkblock" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<div class="unit one-of-four tomatigues hidden-mobile"></div>
+					<div class="unit one-of-four tomatigues"></div>
 				</a>
 			</div>
 		</header><!-- #masthead -->

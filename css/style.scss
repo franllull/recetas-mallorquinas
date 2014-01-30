@@ -25,10 +25,11 @@ and Blueprint http://www.blueprintcss.org/
 
 
 @import 'bourbon/bourbon';
-@import url('normalize.css');
-@import url('fonts.css');
-@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import 'normalize';
+@import 'toast';
+@import 'fonts';
 @import 'mixins';
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
 
 /* Links */
 a {
